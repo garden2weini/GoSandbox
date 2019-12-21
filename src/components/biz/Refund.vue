@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import RatioBar from './chart/RatioBar.vue'
+    import RatioBar from '../chart/RatioBar.vue'
     export default {
         name: 'Refund',
         components:{
@@ -37,7 +37,7 @@
                 chartData: {
                     types: ['掉错商品', '没有掉货', '商品损坏', '订单超时'],
                     colors: ['#E8A61F', '#E67C26', '#0CD8A7', '#ACD8A7'],
-                    values: [53.1, 40, 23 ,1]
+                    values: [53.1, 40, 23, 10]
                 },
             }
         }

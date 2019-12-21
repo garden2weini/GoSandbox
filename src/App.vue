@@ -13,7 +13,6 @@
                 <sale-summary></sale-summary>
                 <el-divider></el-divider>
                 <chart-double-line msg="活跃设备日均销售额" :hasBorder="false"/>
-                
             </div>
             <div class="col-md-4 col-lg-4">
                 <chart-column msg="近30天 用户复购" :hasBorder="true"/>
@@ -44,10 +43,10 @@
     import Timer from './components/chart/Timer.vue'
     import Topic from './components/Topic.vue'
     import RollList from './components/RollList.vue'
-    import SaleSummary from './components/Summary.vue'
+    import SaleSummary from './components/biz/Summary.vue'
     import TwoColums from './components/TwoColums.vue'
     import ThreeColums from './components/ThreeColums.vue'
-    import Refund from './components/Refund.vue'
+    import Refund from './components/biz/Refund.vue'
     
     export default {
         name: 'app',
@@ -65,6 +64,7 @@
             BizRatioBar,
             SaleSummary,
             Refund,
+           
         }
     }
 </script>

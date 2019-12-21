@@ -1,11 +1,17 @@
 <template>
-    <!-- 饼图+图示 -->
-    <div v-bind:id="ranId" v-bind:chartData="chartData"></div>
+    <div  style="margin-top: -15px;">
+        <!-- 饼图+图示 -->
+        <div v-bind:id="ranId" v-bind:chartData="chartData"></div>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'ChartPie',
+    props: {
+        //接收父组件传递过来的参数
+        chartData: undefined,
+    },
     data() {
         // 定义变量
         return {
@@ -13,27 +19,27 @@ export default {
             ranId: 'pie-' + this.random_id(),
             data: [
                 {
-                    location: '三亚',
+                    location: '海淀',
                     value: 44.9
                 },
                 {
-                    location: '千岛湖',
+                    location: '西城',
                     value: 19.7
                 },
                 {
-                    location: '柬埔寨',
+                    location: '东城',
                     value: 17.3
                 },
                 {
-                    location: '呼伦贝尔',
+                    location: '崇文',
                     value: 14.4
                 },
                 {
-                    location: '苏梅岛',
+                    location: '宣武',
                     value: 2.5
                 },
                 {
-                    location: '塞班岛',
+                    location: '顺义',
                     value: 2.5
                 }
             ]
