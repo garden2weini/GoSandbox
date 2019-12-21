@@ -1,15 +1,18 @@
-# Merlin
-## yunxing
-npm run serve
+# 基于Vue开发的数据大屏
+## 快速开始
+- Clone respository from git.
+- npm install(to get node_modules).
+- npm run serve
 
-## 运行准备 
+## 运行准备
+```
 npm install viser-vue
 npm i element-ui -S
 npm install insert-css
 npm install --save @antv/g2
 npm install --save @antv/data-set
 npm install echarts --save
-
+```
 安装JQuery
 ```
 npm install jquery --save
@@ -29,9 +32,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 ```
 
-# default
-
-## Project setup
+## 基础知识-Project setup
 ```
 npm install
 ```
