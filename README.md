@@ -1,33 +1,33 @@
 # 基于Vue开发的数据大屏
 ## 快速开始
-- Clone respository from git.
+- clone respository from git.
 - npm install(to get node_modules).
 - npm run serve
 
 ## 运行准备
+<b>重点：</b><font color="red">(虽然走了点弯路才发现)不用再照着G2/Echarts重新改写各框架的Chart代码了！</font><br/>
+参考: [Viser Demo for React/Vue/Angular](https://viserjs.github.io/demo.html)
+
 ```
+# Viser (for chart)
 npm install viser-vue
+# ElementUI
 npm i element-ui -S
-npm install insert-css
+# DataV g2(+insert-css)
 npm install --save @antv/g2
 npm install --save @antv/data-set
+npm install insert-css
+# Echarts
 npm install echarts --save
-```
-安装JQuery
-```
+# 安装JQuery
 npm install jquery --save
+# 安装Bootstrap
+npm install bootstrap --save
+npm install --save popper.js
 ```
 在main.js文件中添加如下内容
 ```
 import $ from 'jquery'
-```
-安装Bootstrap
-```
-npm install bootstrap --save
-npm install --save popper.js
-```
-在main.js添加如下内容
-```
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 ```
