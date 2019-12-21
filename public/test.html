@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>2nd Vue Demo</title>
+    </head>
+    <body>
+        <noscript>
+            <strong>We're sorry but default doesn't work properly without JavaScript enabled. Please enable it to
+                continue.</strong>
+        </noscript>
+        <div id="components-demo">
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+        </div>
+        <!-- built files will be auto injected -->
+    </body>
+    <script type="module">
+        // 定义一个名为 button-counter 的新组件
+    Vue.component('button-counter', {
+        data: function() {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    // 可以在一个通过 new Vue 创建的 Vue 根实例中，把这个组件作为自定义元素来使用
+    new Vue({ el: '#components-demo' })
+</script>
+</html>
