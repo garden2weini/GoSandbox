@@ -5,7 +5,7 @@
                 <roll-list msg="近30天TopN设备" :hasBorder="true"/>
                 <roll-list msg="近30天 热销SKU" :hasBorder="true" />
                 <roll-list msg="Top毛利*周转SKU" :hasBorder="true" />
-                <chart-pie msg="设备量" :hasBorder="true" />
+                <biz-pie msg="设备量" :hasBorder="true" :data="deviceData"/>
             </div>
             <div class="col-md-5 col-lg-5">
                 <topic msg="智能零售数据运营大屏"/>
@@ -31,30 +31,30 @@
 </template>
 
 <script>
+    import $ from 'jquery'
     import ElementUI from 'element-ui';
     import 'element-ui/lib/theme-chalk/index.css';
     
-    import ChartDoubleLine from './components/chart/DoubleLine.vue'
-    import ChartPie2 from './components/chart/Pie2.vue'
-    import ChartPie1 from './components/chart/Pie1.vue'
-    import ChartPie from './components/biz/BizPie.vue'
-    import ChartColumn from './components/chart/Column.vue'
-    import BizRatioBar from './components/biz/BizRatioBar.vue'
-    import Timer from './components/chart/Timer.vue'
+    // Common components.
     import Topic from './components/Topic.vue'
     import RollList from './components/RollList.vue'
-    import SaleSummary from './components/biz/Summary.vue'
     import TwoColums from './components/TwoColums.vue'
     import ThreeColums from './components/ThreeColums.vue'
+    // Biz components.
+    import BizPie from './components/biz/BizPie.vue'
+    import BizRatioBar from './components/biz/BizRatioBar.vue'
+    import SaleSummary from './components/biz/Summary.vue'
     import Refund from './components/biz/Refund.vue'
+    // Raw Chart components.
+    import ChartDoubleLine from './components/chart/DoubleLine.vue'
+    import ChartColumn from './components/chart/Column.vue'
+    import Timer from './components/chart/Timer.vue'
     
     export default {
         name: 'app',
         components: {
             "chart-double-line" : ChartDoubleLine,
-            ChartPie,
-            ChartPie1,
-            ChartPie2,
+            BizPie,
             ChartColumn,
             Timer,
             Topic,
@@ -64,7 +64,22 @@
             BizRatioBar,
             SaleSummary,
             Refund,
-           
+        },
+        data() {
+            // 定义变量
+            return {
+                deviceData: null,
+                }
+        },
+        created() {
+            // TODO 远程获取rest数据
+            $.getJSON('/data/data-view/device.json', (sourceData) => {
+                  this.deviceData = sourceData;
+                  console.log("App Device Data:");
+                  console.log(new Date());
+                  console.log(this.deviceData);
+            });
+            
         }
     }
 </script>

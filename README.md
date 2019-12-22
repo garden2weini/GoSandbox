@@ -1,12 +1,16 @@
-# 基于Vue开发的数据大屏
-## 快速开始
-- clone respository from git.
-- npm install(to get node_modules).
-- npm run serve
+数据大屏调研
+===================
+基于Vue开发Data View
+-------------------
 
-## 运行准备
-<b>重点：</b><font color="red">(虽然走了点弯路才发现)不用再照着G2/Echarts重新改写各框架的Chart代码了！</font><br/>
-参考: [Viser Demo for React/Vue/Angular](https://viserjs.github.io/demo.html)
+# 快速开始
+1. clone the respository from git.
+1. npm install(to get node_modules).
+1. npm run serve
+
+# 运行准备
+- <b>重点：</b><font color="red">(虽然走了点弯路才发现)不用再照着G2/Echarts重新改写各框架的Chart代码了！</font>
+- See [Viser Demo for React/Vue/Angular](https://viserjs.github.io/demo.html).
 
 ```
 # Viser (for chart)
@@ -32,30 +36,30 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 ```
 
-## 基础知识-Project setup
+# 基础知识-Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Run your tests
+## Run your tests
 ```
 npm run test
 ```
 
-### Lints and fixes files
+## Lints and fixes files
 ```
 npm run lint
 ```
 
-### Customize configuration
+# Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

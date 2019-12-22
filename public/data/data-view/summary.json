@@ -1,0 +1,15 @@
+{
+    "name": "大屏Overview使用的数据",
+    "total": {
+        "amt": 14567.92,
+        "cnt": 1111,
+        "grossAmt": 123456.91,
+        "rate": 75.96
+    },
+    "today": {
+        "amt": 8567.92,
+        "cnt": 555,
+        "grossAmt": 4456.91,
+        "rate": 55.96
+    }
+}
