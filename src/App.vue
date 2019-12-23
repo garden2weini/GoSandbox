@@ -75,11 +75,11 @@
             var self = this;
             // TODO 远程获取rest数据
             function updateViewData() {
-                $.getJSON('./data/data-view/device.json', (sourceData) => {
+                $.getJSON(self.DATA_BASE_URL + 'device.json', (sourceData) => {
                       self.deviceData = sourceData;
                 });
             }
-            console.log(this.BASE_URL)
+            console.log(this.DATA_BASE_URL)
             setInterval(updateViewData, 5000);
             
         }

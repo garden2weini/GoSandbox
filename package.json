@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --host localhost --port 8888",
-    "prod-build": "vue-cli-service build",
-    "build": "vue-cli-service build"
+    "serve": "vue-cli-service serve --mode development --host localhost --port 8888",
+    "serve-pro": "vue-cli-service serve --mode production --host localhost --port 8888",
+    "build-dev": "vue-cli-service build --mode development",
+    "build": "vue-cli-service build --mode production"
   },
   "dependencies": {
     "@antv/data-set": "^0.10.2",

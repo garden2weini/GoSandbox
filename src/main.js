@@ -13,11 +13,10 @@ import SubTopic from './components/SubTopic.vue'
 Vue.component("sub-topic", SubTopic)
 
 // 定义一个全局变量
-Vue.prototype.BASE_URL = "随便一个全局变量"
+Vue.prototype.DATA_BASE_URL = "/data/data-view/"
 
 // NOTE: 设置为开发环境或者生产环境: true开发模式; false生产模式
-Vue.config.productionTip = true
-//Vue.config.publicPath = "./"
+Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
