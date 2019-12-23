@@ -6,7 +6,8 @@
 # 快速开始
 1. clone the respository from git.
 1. npm install(to get node_modules).
-1. npm run serve
+1. npm run serve 开发环境运行
+1. npm run build 发布生产环境
 
 # 运行准备
 - <b>重点：</b><font color="red">(虽然走了点弯路才发现)不用再照着G2/Echarts重新改写各框架的Chart代码了！</font>

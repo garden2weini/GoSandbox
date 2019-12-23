@@ -58,12 +58,19 @@
                 },
             }
         },
+        methods: {
+        },
         mounted() {
-            // TODO 远程获取rest数据
-            $.getJSON(this.DATA_BASE_URL + 'summary.json', (sourceData) => {
-                  this.result = sourceData;
-                  
-                });
+            var self = this;
+            function updateSummary() {
+                // NOTE 远程获取rest数据
+                $.getJSON(self.DATA_BASE_URL + 'summary.json', (sourceData) => {
+                      self.result = sourceData;
+                    });
+            }
+            updateSummary();
+            setInterval(updateSummary, 5000);
+            
         }
     }
 </script>

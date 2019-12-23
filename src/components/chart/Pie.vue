@@ -76,6 +76,7 @@ export default {
         
     },
     mounted() { // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成，一般在该过程进行 Ajax 交互
+        var self = this;
         /*
         this.data = [
                 {name: '海淀',value: 44.9},

@@ -73,15 +73,15 @@
         },
         mounted() {
             var self = this;
-            // TODO 远程获取rest数据
+            // NOTE 远程获取rest数据
             function updateViewData() {
                 $.getJSON(self.DATA_BASE_URL + 'device.json', (sourceData) => {
                       self.deviceData = sourceData;
+                      //console.log(self.deviceData)
                 });
             }
-            console.log(this.DATA_BASE_URL)
+            updateViewData();
             setInterval(updateViewData, 5000);
-            
         }
     }
 </script>
