@@ -60,7 +60,7 @@
         },
         mounted() {
             // TODO 远程获取rest数据
-            $.getJSON('/data/data-view/summary.json', (sourceData) => {
+            $.getJSON('./data/data-view/summary.json', (sourceData) => {
                   this.result = sourceData;
                   
                 });

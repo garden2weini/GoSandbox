@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --host localhost --port 8888",
+    "prod-build": "vue-cli-service build",
     "build": "vue-cli-service build"
   },
   "dependencies": {

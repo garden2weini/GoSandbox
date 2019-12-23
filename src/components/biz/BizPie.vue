@@ -26,10 +26,10 @@ export default {
             //chart: null,
         };
     },
-    created() {
-        console.log("BizPie:");
-        console.log(new Date());
-        console.log(this.data);
+    mounted() {
+        //console.log("BizPie:");
+        //console.log(new Date());
+        //console.log(this.data);
     }
 };
 </script>

@@ -1,27 +1,27 @@
 {
     "data": [
         {
-            "location": "海淀",
+            "name": "海淀",
             "value": 44.9
         },
         {
-            "location": "西城",
+            "name": "西城",
             "value": 19.7
         },
         {
-            "location": "东城",
+            "name": "东城",
             "value": 17.3
         },
         {
-            "location": "崇文",
+            "name": "崇文",
             "value": 14.4
         },
         {
-            "location": "宣武",
+            "name": "宣武",
             "value": 2.5
         },
         {
-            "location": "顺义",
+            "name": "顺义",
             "value": 2.5
         }
     ],

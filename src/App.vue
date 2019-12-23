@@ -71,14 +71,16 @@
                 deviceData: null,
                 }
         },
-        created() {
+        mounted() {
+            var self = this;
             // TODO 远程获取rest数据
-            $.getJSON('/data/data-view/device.json', (sourceData) => {
-                  this.deviceData = sourceData;
-                  console.log("App Device Data:");
-                  console.log(new Date());
-                  console.log(this.deviceData);
-            });
+            function updateViewData() {
+                $.getJSON('./data/data-view/device.json', (sourceData) => {
+                      self.deviceData = sourceData;
+                });
+            }
+            console.log(this.BASE_URL)
+            setInterval(updateViewData, 5000);
             
         }
     }

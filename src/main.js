@@ -12,7 +12,12 @@ import SubTopic from './components/SubTopic.vue'
 // 注册全局组件
 Vue.component("sub-topic", SubTopic)
 
-Vue.config.productionTip = false
+// 定义一个全局变量
+Vue.prototype.BASE_URL = "随便一个全局变量"
+
+// NOTE: 设置为开发环境或者生产环境: true开发模式; false生产模式
+Vue.config.productionTip = true
+//Vue.config.publicPath = "./"
 
 new Vue({
   render: h => h(App),

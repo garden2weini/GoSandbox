@@ -10,7 +10,6 @@ export default {
     name: 'ChartPie',
     props: {
         //接收父组件传递过来的参数
-        //chartData: {},
         vData: {},
     },
     data() {
@@ -46,7 +45,7 @@ export default {
             this.chart
                 .intervalStack()
                 .position('value')
-                .color('location', this.colors)
+                .color('name', this.colors)
                 .style({
                     stroke: 'white',
                     lineWidth: 0//1
@@ -74,44 +73,41 @@ export default {
     },
     // 生命周期 - 创建完成（可以访问当前this实例）
     created() {
-        console.log("Pie:");
-        console.log(new Date());
-        console.log(this.vData);
+        
     },
-    // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成，一般在该过程进行 Ajax 交互
-    mounted() {
+    mounted() { // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成，一般在该过程进行 Ajax 交互
+        /*
         this.data = [
-                {
-                    location: '海淀',
-                    value: 44.9
-                },
-                {
-                    location: '西城',
-                    value: 19.7
-                },
-                {
-                    location: '东城',
-                    value: 17.3
-                },
-                {
-                    location: '崇文',
-                    value: 14.4
-                },
-                {
-                    location: '宣武',
-                    value: 2.5
-                },
-                {
-                    location: '顺义',
-                    value: 2.5
-                }
-            ];
+                {name: '海淀',value: 44.9},
+                {name: '西城',value: 19.7},
+                {name: '东城',value: 17.3},
+                {name: '崇文',value: 14.4},
+                {name: '宣武',value: 2.5},
+                {name: '顺义',value: 2.5}];
+            
         this.colors = ["#1890ff", "#37c661", "#fbce1e", "#2b3b79", "#8a4be2", "#1dc5c5"];
+        */
+        // NOTE: chart label color有默认值
         let height = 250 // 获取父级高度
         this.initCharts(height);
     },
-    // 处理数据变化时的刷新动作
-    watch: {}
+    beforeUpdate() { // 当data更新时触发
+        //console.log("beforeUpdate:");
+        //console.log(this.vData);
+        this.data = this.vData.data;
+        this.colors = this.vData.colors;
+        //this.chart
+        this.chart.changeData(this.data);
+        
+        
+    },
+    updated() {
+        //console.log("updated:");
+        //console.log(this.vData);
+    },
+    watch: { // 处理数据变化时的刷新动作
+        
+    }
 };
 </script>
 
