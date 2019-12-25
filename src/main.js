@@ -15,6 +15,8 @@ Vue.component("sub-topic", SubTopic)
 // NOTE: 定义全局变量
 // Json数据跟路径
 Vue.prototype.DATA_BASE_URL = "/data/data-view/" 
+// 各组件数据刷新频率(毫秒)
+Vue.prototype.REFRESH_INTERVAL = 5000 
 
 // NOTE: 设置为开发环境或者生产环境: true开发模式; false生产模式
 Vue.config.productionTip = false

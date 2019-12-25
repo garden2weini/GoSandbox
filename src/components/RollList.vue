@@ -2,7 +2,7 @@
     <div class="rolllist text-left" style="margin-bottom: 5px;">
         <!-- 饼图+图示 -->
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
-        <roll-list-inner />
+        <roll-list-inner :vData="data" />
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
     props: {
         //接收父组件传递过来的参数
         msg: String,
-        hasBorder: Boolean
+        hasBorder: Boolean,
+        data: {},
     }
 };
 </script>

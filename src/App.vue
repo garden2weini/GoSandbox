@@ -2,9 +2,9 @@
     <div id="app" class="container" style="margin-top: 10px;margin-left: 10px;margin-right: 20px;">
         <div class="row">
             <div class="col-md-3 col-lg-3">
-                <roll-list msg="近30天TopN设备" :hasBorder="true"/>
-                <roll-list msg="近30天 热销SKU" :hasBorder="true" />
-                <roll-list msg="Top毛利*周转SKU" :hasBorder="true" />
+                <roll-list msg="近30天TopN设备" :hasBorder="true" :data="last30DeviceList"/>
+                <roll-list msg="近30天 热销SKU" :hasBorder="true" :data="last30SkuList"/>
+                <roll-list msg="Top毛利*周转SKU" :hasBorder="true" :data="topSkuList"/>
                 <biz-pie msg="设备量" :hasBorder="true" :data="deviceData"/>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -69,6 +69,9 @@
             // 定义变量
             return {
                 deviceData: null,
+                last30DeviceList: null,
+                last30SkuList: null,
+                topSkuList: null,
                 }
         },
         mounted() {
@@ -77,11 +80,68 @@
             function updateViewData() {
                 $.getJSON(self.DATA_BASE_URL + 'device.json', (sourceData) => {
                       self.deviceData = sourceData;
-                      //console.log(self.deviceData)
+                });
+                $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
+                      }
+                      self.last30DeviceList = results;
+                });
+                $.getJSON(self.DATA_BASE_URL + 'last30-sku.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i].name + ":" + list[i].rate;
+                      }
+                      self.last30SkuList = results;
+                });
+                $.getJSON(self.DATA_BASE_URL + 'top-sku.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i];
+                      }
+                      self.topSkuList = results;
+                });
+            }
+            function updateListData() {
+                $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
+                      }
+                      self.last30DeviceList = results;
+                });
+                $.getJSON(self.DATA_BASE_URL + 'last30-sku.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i].name + ":" + list[i].rate;
+                      }
+                      self.last30SkuList = results;
+                });
+                $.getJSON(self.DATA_BASE_URL + 'top-sku.json', (sourceData) => {
+                      var list = sourceData.list;
+                      var results = new Array(list.length);
+                      // 格式化List内容
+                      for(var i=0; i< list.length; i++) {
+                          results[i] = list[i];
+                      }
+                      self.topSkuList = results;
                 });
             }
             updateViewData();
-            setInterval(updateViewData, 5000);
+            updateListData();
+            setInterval(updateViewData, this.REFRESH_INTERVAL);
+            setInterval(updateListData, 5000); // 60 * 1000
         }
     }
 </script>

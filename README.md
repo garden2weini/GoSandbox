@@ -36,6 +36,10 @@ import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 ```
+# 参考
+1. [Viser(前端组件)](https://viserjs.github.io/demo.html#/viser/event/use-label-desity)
+1. [Antv g2](https://g2.antv.vision/zh)
+1. [ECharts](https://www.echartsjs.com/examples/zh/index.html)
 
 # 基础知识-Project setup
 ```

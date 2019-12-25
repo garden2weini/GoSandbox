@@ -69,7 +69,9 @@
                     });
             }
             updateSummary();
-            setInterval(updateSummary, 5000);
+            setInterval(updateSummary, this.REFRESH_INTERVAL);
+        },
+        watch: {
             
         }
     }
