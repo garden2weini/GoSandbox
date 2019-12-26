@@ -66,7 +66,7 @@ export default {
             var ul2 = document.getElementById(this.ranId3);
             var ulbox = document.getElementById(this.ranId1);
             // scrollTop为空时进行重置
-            if(!ulbox.scrollTop) ulbox.scrollTop=0;
+            if(ulbox === null || ulbox.scrollTop === null) ulbox.scrollTop=0;
             // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
             if (ulbox.scrollTop >= ul1.scrollHeight) {
                 ulbox.scrollTop = 0;

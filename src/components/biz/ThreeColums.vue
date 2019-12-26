@@ -4,13 +4,13 @@
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-3 col-lg-3 text-center" >
-                $8.27
+                ${{result.orders.today}}
             </div>
             <div class="col-md-3 col-lg-3 text-center" >
-                $12.38
+                ${{result.orders.last7}}
             </div>
             <div class="col-md-3 col-lg-3 text-center" >
-                $13.84
+                ${{result.orders.last30}}
             </div>
         </div>
         <div class="row">
@@ -28,12 +28,41 @@
 </template>
 
 <script>
+    import $ from 'jquery'
     export default {
         name: 'ThreeColumns',
         props: {
             //接收父组件传递过来的参数
             msg: String,
             hasBorder: Boolean,
+        },
+        data() {
+            // 定义变量
+            return {
+                result: {
+                    "users": {
+                        "today": 0,
+                        "rate": 0,
+                        "total": 0
+                    },
+                    "orders": {
+                        "today": 0,
+                        "last7": 0,
+                        "last30": 0
+                    }
+                },
+            }
+        },
+        mounted() {
+            var self = this;
+            function updateSummary() {
+                // NOTE 远程获取rest数据
+                $.getJSON(self.DATA_BASE_URL + 'others.json', (sourceData) => {
+                      self.result = sourceData;
+                    });
+            }
+            updateSummary();
+            setInterval(updateSummary, this.REFRESH_INTERVAL);
         },
     }
 </script>

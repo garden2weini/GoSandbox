@@ -2,7 +2,7 @@
     <!-- 种类占比 -->
     <div class="users text-left" style="margin-bottom: 5px;">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
-        <ratio-bar exStyle="width: 300px;height:100px;" v-bind:chartData="chartData"/>
+        <ratio-bar exStyle="width: 300px;height:100px;" :vData="data"/>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
     props: {
         //接收父组件传递过来的参数
         msg: String,
-        hasBorder: Boolean
+        hasBorder: Boolean,
+        data: {},
     },
     data() {
         // 定义变量

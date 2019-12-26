@@ -2,7 +2,7 @@
     <!-- 基础柱状图 -->
     <div class="column text-left">
         <sub-topic :msg="msg" :hasBorder="hasBorder"/>
-        <div v-bind:id="ranId" style="width: 300px;height:150px;"></div>
+        <div v-bind:id="ranId" style="width: 300px;height:150px;" v-bind:vData="vData"></div>
     </div>
 </template>
 
@@ -13,8 +13,8 @@ export default {
     props: {
         //接收父组件传递过来的参数
         msg: String,
-        //chartId: String
         hasBorder: Boolean,
+        vData: {},
     },
     data() {
         // 定义变量
@@ -97,32 +97,31 @@ export default {
         getResult: function() {
             this.result = {
                 data: [ // 
-                  { time: '1-5', value: 30 },
-                  { time: '6-10', value: 90 },
-                  { time: '11-20', value: 50 },
-                  { time: '21-30', value: 30 },
-                  { time: '30+', value: 70 }
+                  { time: '.', value: 0 },
+                  { time: '..', value: 0 },
+                  { time: '...', value: 0 },
+                  { time: '....', value: 0 },
+                  { time: '.....', value: 0 }
                 ]
             };
             this.result.height = 120; //this.$el.offsetHeight; // 获取组件高度
-        }
+        },
     },
     created() { // 生命周期 - 创建完成（可以访问当前this实例）
         
     },
     mounted() { // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成
-        // 准备定时更新逻辑
         var self = this;
-        // 更新Chart数据的逻辑
-        function reloadData() {
-            self.getResult();
-            self.chart.source(self.result.data);  
-        }
+        
         self.getResult();
+        //console.log(self.result.data);
         self.initCharts(self.result);
-        //设置定时器，每60秒刷新一次
-        setInterval(reloadData, 60 * 1000);
-    
+    },
+    beforeUpdate() { // 当data更新时触发
+        //更新Chart数据的逻辑
+        this.chart.source(this.vData.data);
+        this.chart.repaint();
+        //console.log(this.vData.data);
     },
     watch: { // 处理数据变化时的刷新动作
         

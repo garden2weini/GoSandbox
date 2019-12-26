@@ -15,11 +15,11 @@
                 <chart-double-line msg="活跃设备日均销售额" :hasBorder="false"/>
             </div>
             <div class="col-md-4 col-lg-4">
-                <chart-column msg="近30天 用户复购" :hasBorder="true"/>
+                <chart-column msg="近30天 用户复购" :hasBorder="true" :vData="repeatePurchaseData"/>
                 <two-colums msg="服务用户" :hasBorder="true"/>
                 <three-colums msg="客单价" :hasBorder="true"/>
-                <biz-ratio-bar msg="支付占比" :hasBorder="true"/>
-                <refund msg="近30天退款金额" :hasBorder="true"/>
+                <biz-ratio-bar msg="支付占比" :hasBorder="true" :data="payTypeRateData"/>
+                <refund msg="近30天退款金额" :hasBorder="true" :data="refundSummaryData"/>
             </div>
         </div>
         <div class="row">
@@ -38,13 +38,13 @@
     // Common components.
     import Topic from './components/Topic.vue'
     import RollList from './components/RollList.vue'
-    import TwoColums from './components/TwoColums.vue'
-    import ThreeColums from './components/ThreeColums.vue'
     // Biz components.
     import BizPie from './components/biz/BizPie.vue'
     import BizRatioBar from './components/biz/BizRatioBar.vue'
     import SaleSummary from './components/biz/Summary.vue'
     import Refund from './components/biz/Refund.vue'
+    import TwoColums from './components/biz/TwoColums.vue'
+    import ThreeColums from './components/biz/ThreeColums.vue'
     // Raw Chart components.
     import ChartDoubleLine from './components/chart/DoubleLine.vue'
     import ChartColumn from './components/chart/Column.vue'
@@ -72,6 +72,9 @@
                 last30DeviceList: null,
                 last30SkuList: null,
                 topSkuList: null,
+                repeatePurchaseData: null,
+                payTypeRateData: null,
+                refundSummaryData: null,
                 }
         },
         mounted() {
@@ -81,33 +84,17 @@
                 $.getJSON(self.DATA_BASE_URL + 'device.json', (sourceData) => {
                       self.deviceData = sourceData;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {
-                      var list = sourceData.list;
-                      var results = new Array(list.length);
-                      // 格式化List内容
-                      for(var i=0; i< list.length; i++) {
-                          results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
-                      }
-                      self.last30DeviceList = results;
+                $.getJSON(self.DATA_BASE_URL + 'repeated-purchase.json', (sourceData) => {
+                      self.repeatePurchaseData = sourceData;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'last30-sku.json', (sourceData) => {
-                      var list = sourceData.list;
-                      var results = new Array(list.length);
-                      // 格式化List内容
-                      for(var i=0; i< list.length; i++) {
-                          results[i] = list[i].name + ":" + list[i].rate;
-                      }
-                      self.last30SkuList = results;
+                $.getJSON(self.DATA_BASE_URL + 'payTypeRate.json', (sourceData) => {
+                      self.payTypeRateData = sourceData;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'top-sku.json', (sourceData) => {
-                      var list = sourceData.list;
-                      var results = new Array(list.length);
-                      // 格式化List内容
-                      for(var i=0; i< list.length; i++) {
-                          results[i] = list[i];
-                      }
-                      self.topSkuList = results;
+                $.getJSON(self.DATA_BASE_URL + 'refundSummary.json', (sourceData) => {
+                      self.refundSummaryData = sourceData;
                 });
+                
+                
             }
             function updateListData() {
                 $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {

@@ -3,17 +3,17 @@
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-6 col-lg-6 text-center" >
-                退款占比：0.4%
+                退款占比：{{data.refundRate}}%
             </div>
             <div class="col-md-3 col-lg-3 text-left" >
-                退款：37
+                退款：{{data.refundCnt}}
             </div>
             <div class="col-md-3 col-lg-3 text-left" >
-                ¥1234
+                ¥{{data.refundAmt}}
             </div>
         </div>
         <div class="row">
-            <ratio-bar exStyle="width: 320px;height:100px;" v-bind:chartData="chartData"/>
+            <ratio-bar exStyle="width: 320px;height:100px;" :vData="data"/>
         </div>
     </div>
     
@@ -30,6 +30,7 @@
             //接收父组件传递过来的参数
             msg: String,
             hasBorder: Boolean,
+            data: {},
         },
         data() {
             // 定义变量
