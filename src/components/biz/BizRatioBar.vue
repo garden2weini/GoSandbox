@@ -23,11 +23,7 @@ export default {
     data() {
         // 定义变量
         return {
-            chartData: {
-                types: ['支付宝', '微信', '京东支付'],
-                colors: ['#E8A61F', '#E67C26', '#0CD8A7'],
-                values: [53.1, 23 ,1]
-            },
+            
         }
     }
 };
