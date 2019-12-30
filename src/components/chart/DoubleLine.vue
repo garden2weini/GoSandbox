@@ -23,13 +23,13 @@ export default {
             data: [
                 {
                     day: '12-10',
-                    sale: 0,
-                    refund: 0
+                    '销售金额': 0,
+                    '退款金额': 0
                 },
                 {
                     day: '12-11',
-                    sale: 10,
-                    refund: 10
+                    '销售金额': 10,
+                    '退款金额': 10
                 }
             ],
             dataView: null
@@ -47,7 +47,7 @@ export default {
             // fold 方式完成了行列转换，如果不想使用 DataSet 直接手工转换数据即可
             this.dataView.transform({
                 type: 'fold',
-                fields: ['sale', 'refund'], // 展开字段集
+                fields: ['销售金额', '退款金额'], // 展开字段集
                 key: 'type', // key字段
                 value: 'amt' // value字段
             });
@@ -57,24 +57,8 @@ export default {
                 height: 200
             });
 
-            var scale = {
-                date: {
-                    alias: '日期',
-                    type: 'time',
-                    mask: 'MM-DD'
-                },
-                sale: {
-                    alias: '销售金额',
-                    min: 0
-                },
-                refund: {
-                    alias: '退款金额',
-                    min: 0
-                }
-            };
-
-            this.chart.source(this.dataView, scale);
-
+            this.chart.source(this.dataView);
+            
             this.chart.tooltip({
                 crosshairs: {
                     type: 'line'
@@ -91,6 +75,7 @@ export default {
                 .line()
                 .position('day*amt')
                 .color('type')
+                .size(2)
                 .shape('smooth');
             this.chart
                 .point()
@@ -111,7 +96,6 @@ export default {
     beforeUpdate() {
         // 当data更新时触发
         this.data = this.vData.data;
-        //this.chart.clear();
         if (this.chart) {
             // 如果存在的话就删除图表再重新生成
             this.chart.destroy();
