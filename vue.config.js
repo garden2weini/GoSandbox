@@ -4,7 +4,7 @@ module.exports = {
     //publicPath: '/resources/operation/', // 基本路径
     //outputDir = 'dist'; // 输出文件目录
     publicPath: process.env.NODE_ENV === 'production'
-        ? '/resources/operation/'
+        ? '${base}/resources/operation/'
         : './',
     outputDir: process.env.NODE_ENV === 'production'
         ? 'dist'

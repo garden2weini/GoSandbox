@@ -101,7 +101,7 @@ export default {
             this.chart.destroy();
         }
         this.initCharts();
-        //this.chart.repaint();
+        
     }
 };
 </script>

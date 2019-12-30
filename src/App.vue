@@ -89,7 +89,7 @@
                 $.getJSON(self.DATA_BASE_URL + 'device.json', (sourceData) => {
                       self.deviceData = sourceData;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'repeated-purchase.json', (sourceData) => {
+                $.getJSON(self.DATA_BASE_URL + 'repeatedPurchase.json', (sourceData) => {
                       self.repeatePurchaseData = sourceData;
                 });
                 $.getJSON(self.DATA_BASE_URL + 'payTypeRate.json', (sourceData) => {
@@ -103,7 +103,7 @@
                 });
             }
             function updateListData() {
-                $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {
+                $.getJSON(self.DATA_BASE_URL + 'last30Device.json', (sourceData) => {
                       var list = sourceData.list;
                       var results = new Array(list.length);
                       // 格式化List内容
@@ -114,7 +114,7 @@
                       }
                       self.last30DeviceList = results;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'last30-sku.json', (sourceData) => {
+                $.getJSON(self.DATA_BASE_URL + 'last30Sku.json', (sourceData) => {
                       var list = sourceData.list;
                       var results = new Array(list.length);
                       // 格式化List内容
