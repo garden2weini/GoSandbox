@@ -1,148 +1,125 @@
 <template>
     <div class="line2 text-left">
-        <sub-topic :msg="msg" :hasBorder="hasBorder"/>
-        <div v-bind:id="ranId"></div>
+        <sub-topic :msg="msg" :hasBorder="hasBorder" />
+        <div v-bind:id="ranId" v-bind:vData="vData"></div>
     </div>
 </template>
 
 <script>
-    import DataSet from '@antv/data-set';
-    
-    export default {
-        name: 'ChartDoubleLine',
-        props: {
-            msg: String,
-            hasBorder: Boolean,
-        },
-        data() {
-            // 定义变量
-            return {
-                chart: null,
-                ranId: 'doubleline-' + this.random_id(),
-                result: { data: [] }
-            };
-        },
-        methods:{
-            random_id: function() {
-                var tmpDate = new Date();
-                var tmp = tmpDate.getTime();
-                return tmp;
-            },
-        },
-        mounted() {
-            // {month: 'Jan', city: 'Tokyo', temperature: 3.9}
-            const data = [{
-                    month: 'Jan',
-                    Tokyo: 7.0,
-                    London: 3.9
+import DataSet from '@antv/data-set';
+
+export default {
+    name: 'ChartDoubleLine',
+    props: {
+        msg: String,
+        hasBorder: Boolean,
+        vData: {}
+    },
+    data() {
+        // 定义变量
+        return {
+            chart: null,
+            ranId: 'doubleline-' + this.random_id(),
+            data: [
+                {
+                    day: '12-10',
+                    sale: 0,
+                    refund: 0
                 },
                 {
-                    month: 'Feb',
-                    Tokyo: 6.9,
-                    London: 4.2
-                },
-                {
-                    month: 'Mar',
-                    Tokyo: 9.5,
-                    London: 5.7
-                },
-                {
-                    month: 'Apr',
-                    Tokyo: 14.5,
-                    London: 8.5
-                },
-                {
-                    month: 'May',
-                    Tokyo: 18.4,
-                    London: 11.9
-                },
-                {
-                    month: 'Jun',
-                    Tokyo: 21.5,
-                    London: 15.2
-                },
-                {
-                    month: 'Jul',
-                    Tokyo: 25.2,
-                    London: 17.0
-                },
-                {
-                    month: 'Aug',
-                    Tokyo: 26.5,
-                    London: 16.6
-                },
-                {
-                    month: 'Sep',
-                    Tokyo: 23.3,
-                    London: 14.2
-                },
-                {
-                    month: 'Oct',
-                    Tokyo: 18.3,
-                    London: 10.3
-                },
-                {
-                    month: 'Nov',
-                    Tokyo: 13.9,
-                    London: 6.6
-                },
-                {
-                    month: 'Dec',
-                    Tokyo: 9.6,
-                    London: 4.8
+                    day: '12-11',
+                    sale: 10,
+                    refund: 10
                 }
-            ];
-            const ds = new DataSet();
-            const dv = ds.createView().source(data);
+            ],
+            dataView: null
+        };
+    },
+    methods: {
+        random_id: function() {
+            var tmpDate = new Date();
+            var tmp = tmpDate.getTime();
+            return tmp;
+        },
+        initCharts: function() {
+            var ds = new DataSet();
+            this.dataView = ds.createView().source(this.data);
             // fold 方式完成了行列转换，如果不想使用 DataSet 直接手工转换数据即可
-            dv.transform({
+            this.dataView.transform({
                 type: 'fold',
-                fields: ['Tokyo', 'London'], // 展开字段集
-                key: 'city', // key字段
-                value: 'temperature' // value字段
+                fields: ['sale', 'refund'], // 展开字段集
+                key: 'type', // key字段
+                value: 'amt' // value字段
             });
-            const chart = new G2.Chart({
+            this.chart = new G2.Chart({
                 container: this.ranId,
                 forceFit: true,
                 height: 200
             });
-            
-            chart.source(dv, {
-                month: {
-                    range: [0, 1]
+
+            var scale = {
+                date: {
+                    alias: '日期',
+                    type: 'time',
+                    mask: 'MM-DD'
+                },
+                sale: {
+                    alias: '销售金额',
+                    min: 0
+                },
+                refund: {
+                    alias: '退款金额',
+                    min: 0
                 }
-            });
-            chart.tooltip({
+            };
+
+            this.chart.source(this.dataView, scale);
+
+            this.chart.tooltip({
                 crosshairs: {
                     type: 'line'
                 }
             });
-            chart.axis('temperature', {
+            this.chart.axis('amt', {
                 label: {
                     formatter: val => {
-                        return val + '°C';
+                        return '¥' + val;
                     }
                 }
             });
-            chart
+            this.chart
                 .line()
-                .position('month*temperature')
-                .color('city')
+                .position('day*amt')
+                .color('type')
                 .shape('smooth');
-            chart
+            this.chart
                 .point()
-                .position('month*temperature')
-                .color('city')
+                .position('day*amt')
+                .color('type')
                 .size(4)
                 .shape('circle')
                 .style({
                     stroke: '#fff',
                     lineWidth: 1
                 });
-            chart.render();
+            this.chart.render();
         }
+    },
+    mounted() {
+        this.initCharts();
+    },
+    beforeUpdate() {
+        // 当data更新时触发
+        this.data = this.vData.data;
+        //this.chart.clear();
+        if (this.chart) {
+            // 如果存在的话就删除图表再重新生成
+            this.chart.destroy();
+        }
+        this.initCharts();
+        //this.chart.repaint();
     }
+};
 </script>
 
-<style>
-</style>
+<style></style>

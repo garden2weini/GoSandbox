@@ -12,7 +12,7 @@
                 <el-divider></el-divider>
                 <sale-summary></sale-summary>
                 <el-divider></el-divider>
-                <chart-double-line msg="活跃设备日均销售额" :hasBorder="false"/>
+                <chart-double-line msg="活跃设备日均销售额" :hasBorder="false" :vData="dailyMeanSaleData"/>
             </div>
             <div class="col-md-4 col-lg-4">
                 <chart-column msg="近30天 用户复购" :hasBorder="true" :vData="repeatePurchaseData"/>
@@ -75,7 +75,7 @@
                 repeatePurchaseData: null,
                 payTypeRateData: null,
                 refundSummaryData: null,
-                
+                dailyMeanSaleData: null,
             }
         },
         methods: {
@@ -97,6 +97,9 @@
                 });
                 $.getJSON(self.DATA_BASE_URL + 'refundSummary.json', (sourceData) => {
                       self.refundSummaryData = sourceData;
+                });
+                $.getJSON(self.DATA_BASE_URL + 'dailyMeanSale.json', (sourceData) => {
+                      self.dailyMeanSaleData = sourceData;
                 });
             }
             function updateListData() {
@@ -136,7 +139,7 @@
             updateViewData();
             updateListData();
             setInterval(updateViewData, this.REFRESH_INTERVAL);
-            setInterval(updateListData, 20000); // 60 * 1000
+            setInterval(updateListData, this.REFRESH_INTERVAL * 2); // 60 * 1000
         }
     }
 </script>

@@ -103,6 +103,6 @@ ul {
 li {
     width: 250px;
     font-size: 13px;
-    display:block; /* NOTE: 此属性触发里面的span布局生效 */
+    display:block; /* NOTE: block属性触发里面的span布局生效. list-item属性增加列表标记 */
 }
 </style>
