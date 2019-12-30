@@ -125,7 +125,7 @@
                       }
                       self.last30SkuList = results;
                 });
-                $.getJSON(self.DATA_BASE_URL + 'top-sku.json', (sourceData) => {
+                $.getJSON(self.DATA_BASE_URL + 'topSku.json', (sourceData) => {
                       var list = sourceData.list;
                       var results = new Array(list.length);
                       // 格式化List内容
