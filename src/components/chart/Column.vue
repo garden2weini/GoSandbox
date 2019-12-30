@@ -37,7 +37,7 @@ export default {
                 container: this.ranId,
                 forceFit: true,
                 height: _result.height,
-                padding: [ 20, 20, 20, 20 ]
+                padding: [ 20, 20, 20, 38 ] // 略,略,略,左边内边距（可显示4位数字）
             });
             
             // 模拟window.resize时才会触发forceFit: true，以便自适应屏幕的宽度

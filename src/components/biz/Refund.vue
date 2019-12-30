@@ -3,13 +3,13 @@
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-6 col-lg-6 text-center" >
-                退款占比：{{data.refundRate}}%
+                退款占比：{{data1.refundRate}}%
             </div>
             <div class="col-md-3 col-lg-3 text-left" >
-                退款：{{data.refundCnt}}
+                退款：{{data1.refundCnt}}
             </div>
             <div class="col-md-3 col-lg-3 text-left" >
-                ¥{{data.refundAmt}}
+                ¥{{data1.refundAmt}}
             </div>
         </div>
         <div class="row">
@@ -35,9 +35,16 @@
         data() {
             // 定义变量
             return {
-                
+
+				data1: {
+					refundRate:0,
+					refundCnt: 0,
+					refundAmt: 0},
             }
-        }
+        },
+		beforeUpdate() { // 当data更新时触发
+		    this.data1 = this.data;
+		}
     }
 </script>
 

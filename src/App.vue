@@ -75,9 +75,14 @@
                 repeatePurchaseData: null,
                 payTypeRateData: null,
                 refundSummaryData: null,
-                }
+                
+            }
+        },
+        methods: {
+            
         },
         mounted() {
+            
             var self = this;
             // NOTE 远程获取rest数据
             function updateViewData() {
@@ -102,7 +107,10 @@
                       var results = new Array(list.length);
                       // 格式化List内容
                       for(var i=0; i< list.length; i++) {
-                          results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
+                          //results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
+                          // ES6格式化字符串
+                          let indent = "&nbsp;".repeat(2);
+                          results[i] = `${list[i].name}${indent}${list[i].amt}/${list[i].cnt}笔`;
                       }
                       self.last30DeviceList = results;
                 });

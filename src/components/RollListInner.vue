@@ -1,16 +1,6 @@
 <template>
     <div v-bind:id="ranId1">
         <ul v-bind:id="ranId2">
-            <!--
-            <li>点位地址1...................¥8719/3600笔</li>
-            <li>点位地址2...................¥8719/3600笔</li>
-            <li>点位地址3...................¥8719/3600笔</li>
-            <li>点位地址4...................¥8719/3600笔</li>
-            <li>点位地址5...................¥8719/3600笔</li>
-            <li>点位地址6...................¥8719/3600笔</li>
-            <li>点位地址7...................¥8719/3600笔</li>
-            <li>点位地址8...................¥8719/3600笔</li>
-            -->
             <li v-for="item in vData">{{ item }}</li>
         </ul>
         <ul v-bind:id="ranId3"></ul>
@@ -94,7 +84,7 @@ export default {
     padding: 0;
 }
 div {
-    width: 260px;
+    width: -webkit-max-content;
     height: 84px; /* 必须 */
     overflow: hidden; /* 必须 */
     margin: 1px auto;
