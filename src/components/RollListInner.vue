@@ -1,7 +1,11 @@
 <template>
     <div v-bind:id="ranId1">
         <ul v-bind:id="ranId2">
-            <li v-for="item in vData">{{ item }}</li>
+            <li v-for="item in vData">
+                <p v-html="item"></p>
+            </li>
+            
+            
         </ul>
         <ul v-bind:id="ranId3"></ul>
     </div>
@@ -69,9 +73,9 @@ export default {
         this.roll(50);
     },
     beforeUpdate() { // 当data更新时触发
-        //var ulbox = document.getElementById(this.ranId1);
-        //ulbox.scrollTop=0;
         clearInterval(this.timer);
+        //var ulbox = document.getElementById(this.ranId1);
+        //if(ulbox === null || ulbox.scrollTop === null) ulbox.scrollTop=0;
         this.roll(50);
     },
 };
@@ -99,5 +103,6 @@ ul {
 li {
     width: 250px;
     font-size: 13px;
+    display:block; /* NOTE: 此属性触发里面的span布局生效 */
 }
 </style>

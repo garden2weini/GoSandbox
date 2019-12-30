@@ -98,8 +98,6 @@
                 $.getJSON(self.DATA_BASE_URL + 'refundSummary.json', (sourceData) => {
                       self.refundSummaryData = sourceData;
                 });
-                
-                
             }
             function updateListData() {
                 $.getJSON(self.DATA_BASE_URL + 'last30-device.json', (sourceData) => {
@@ -107,10 +105,9 @@
                       var results = new Array(list.length);
                       // 格式化List内容
                       for(var i=0; i< list.length; i++) {
-                          //results[i] = list[i].name + ":" + list[i].amt + "/" + list[i].cnt + "笔";
+                          //results[i] = list[i].name + indent + list[i].amt + "/" + list[i].cnt + "笔";
                           // ES6格式化字符串
-                          let indent = "&nbsp;".repeat(2);
-                          results[i] = `${list[i].name}${indent}${list[i].amt}/${list[i].cnt}笔`;
+                          results[i] = `<span>${i+1}. ${list[i].name}</span><span style="float:right;">${list[i].amt}/${list[i].cnt}笔</span>`;
                       }
                       self.last30DeviceList = results;
                 });
@@ -119,7 +116,9 @@
                       var results = new Array(list.length);
                       // 格式化List内容
                       for(var i=0; i< list.length; i++) {
-                          results[i] = list[i].name + ":" + list[i].rate;
+                          // results[i] = list[i].name + ":" + list[i].rate;
+                          // ES6格式化字符串
+                          results[i] = `<span>${i+1}. ${list[i].name}</span><span style="float:right;">${list[i].rate}%</span>`;
                       }
                       self.last30SkuList = results;
                 });
@@ -128,7 +127,8 @@
                       var results = new Array(list.length);
                       // 格式化List内容
                       for(var i=0; i< list.length; i++) {
-                          results[i] = list[i];
+                          //results[i] = list[i];
+                          results[i] = `<span>${i+1}. ${list[i]}</span>`;
                       }
                       self.topSkuList = results;
                 });
@@ -136,7 +136,7 @@
             updateViewData();
             updateListData();
             setInterval(updateViewData, this.REFRESH_INTERVAL);
-            setInterval(updateListData, 5000); // 60 * 1000
+            setInterval(updateListData, 20000); // 60 * 1000
         }
     }
 </script>
