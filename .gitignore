@@ -2,3 +2,4 @@ node_modules/*
 dist/*
 dist-dev/*
 tmp.md
+.DS_Store
