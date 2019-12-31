@@ -23,7 +23,7 @@ export default {
             result: { data: [] },
             rawOption: { //指定图表的配置项和数据模版
                 //backgroundColor: '#000E1B',
-                backgroundColor: 'white',
+                backgroundColor: this.BG_COLOR,
                 legend: {
                     icon: 'circle',
                     bottom: '20%', // label的下相对位置

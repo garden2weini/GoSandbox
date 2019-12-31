@@ -1,5 +1,5 @@
 <template>
-    <div class="users text-left" style="margin-bottom: 5px;">
+    <div class="m-block users text-left" style="margin-bottom: 5px;">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-6 col-lg-6 text-center" >

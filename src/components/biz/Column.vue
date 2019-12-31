@@ -1,6 +1,6 @@
 <template>
     <!-- 基础柱状图 -->
-    <div class="column text-left">
+    <div class="m-block column text-left">
         <sub-topic :msg="msg" :hasBorder="hasBorder"/>
         <div v-bind:id="ranId" style="width: 300px;height:150px;" v-bind:vData="vData"></div>
     </div>

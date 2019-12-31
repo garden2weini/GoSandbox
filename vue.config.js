@@ -10,7 +10,7 @@ module.exports = {
     outputDir: process.env.NODE_ENV === 'production'
         ? 'dist'
         : 'dist-dev',
-    // 决定部署代码是否与源代码保留映射关系(打包js时生成的map)
+    // SourceMap决定部署代码是否与源代码保留映射关系(打包js时生成的map)
     productionSourceMap: process.env.NODE_ENV === 'production' ? false : true,
     
     configureWebpack: (config) => {

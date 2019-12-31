@@ -1,10 +1,10 @@
 <template>
     <!-- 每个图例的标题 -->
     <div>
-        <el-button v-if="hasBorder" style="border-radius: 4px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+        <el-button class="border" v-if="hasBorder">
             {{ msg }}
         </el-button>
-        <el-button v-else style="border:none">
+        <el-button class="no-border" v-else>
             {{ msg }}
         </el-button>
     </div>
@@ -33,5 +33,14 @@
         padding-top: 5px;
         padding-bottom: 5px;
         padding-left: 10px;
+        background-color: #10707F;
+        color:#00FF00;
+    }
+    button.border {
+         border-radius: 4px;
+         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    }
+    button.no-border {
+          border:none;
     }
 </style>

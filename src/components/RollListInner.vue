@@ -93,7 +93,7 @@ div {
     overflow: hidden; /* 必须 */
     margin: 1px auto;
     margin-left: 1px;
-    border: 1px solid #f0f0f0;
+    /*border: 1px solid #f0f0f0;*/
     /*border:none;*/
     text-align: left;
 }

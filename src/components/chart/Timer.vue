@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-        <el-button style="border:0px">
+        <el-button style="border:0px;background-color: transparent;">
             <svg
                 width="16px"
                 height="16px"
@@ -62,5 +62,9 @@ export default {
     //销毁
     beforeDestroy: function() {}
 };
+
+</script>
+
+<style scoped>
 
 </script>

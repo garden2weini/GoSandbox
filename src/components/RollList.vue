@@ -1,5 +1,5 @@
 <template>
-    <div class="rolllist text-left" style="margin-bottom: 5px;">
+    <div class="m-block rolllist text-left" style="margin-bottom: 5px;">
         <!-- 饼图+图示 -->
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <roll-list-inner :vData="data" />

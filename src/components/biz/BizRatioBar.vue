@@ -1,8 +1,8 @@
 <template>
     <!-- 种类占比 -->
-    <div class="users text-left" style="margin-bottom: 5px;">
+    <div class="m-block users text-left" style="margin-bottom: 5px;">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
-        <ratio-bar exStyle="width: 300px;height:100px;" :vData="data"/>
+        <ratio-bar exStyle="width: 350px;height:100px;" :vData="data"/>
     </div>
 </template>
 

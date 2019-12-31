@@ -1,5 +1,5 @@
 <template>
-    <div class="refund text-left" style="margin-bottom: 5px;">
+    <div class="m-block refund text-left">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-6 col-lg-6 text-center" >
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row">
-            <ratio-bar exStyle="width: 320px;height:100px;" :vData="data"/>
+            <ratio-bar exStyle="width: 350px;height:100px;" :vData="data"/>
         </div>
     </div>
     
@@ -35,7 +35,6 @@
         data() {
             // 定义变量
             return {
-
 				data1: {
 					refundRate:0,
 					refundCnt: 0,
@@ -50,7 +49,12 @@
 
 <style scoped>
     div {
-        padding: 0px 1px 1px 0px; /* 上内边距;右内边距;下内边距;左内边距 */
-        font-size: 12px;
+        padding: 1px 0px 0px 0px; /* 上内边距;右内边距;下内边距;左内边距 */
+        font-size: 13px;
+        
+    }
+    div.row {
+        margin-left: 0px;
+        margin-right: 0px;
     }
 </style>

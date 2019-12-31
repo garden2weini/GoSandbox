@@ -45,9 +45,9 @@
     import Refund from './components/biz/Refund.vue'
     import TwoColums from './components/biz/TwoColums.vue'
     import ThreeColums from './components/biz/ThreeColums.vue'
+    import ChartDoubleLine from './components/biz/DoubleLine.vue'
+    import ChartColumn from './components/biz/Column.vue'
     // Raw Chart components.
-    import ChartDoubleLine from './components/chart/DoubleLine.vue'
-    import ChartColumn from './components/chart/Column.vue'
     import Timer from './components/chart/Timer.vue'
     
     export default {
@@ -153,5 +153,9 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+    }
+    div.m-block {
+        background-color: #C0C4CC;
+        margin-bottom: 5px;
     }
 </style>

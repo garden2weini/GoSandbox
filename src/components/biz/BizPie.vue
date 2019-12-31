@@ -1,5 +1,5 @@
 <template>
-    <div class="pie text-left">
+    <div class="m-block pie text-left">
         <!-- 饼图+图示 -->
         <sub-topic :msg="msg" :hasBorder="hasBorder"/>
         <chart-pie :vData="data"/>

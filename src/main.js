@@ -13,6 +13,7 @@ import SubTopic from './components/SubTopic.vue'
 Vue.component("sub-topic", SubTopic)
 
 // NOTE: 定义全局变量
+Vue.prototype.BG_COLOR='#C0C4CC';
 // 依照环境切换Json Url的根
 if (process.env.NODE_ENV === 'production') {
     Vue.prototype.JSON_BASE = "${base}/"
