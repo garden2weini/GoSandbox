@@ -13,14 +13,20 @@ import SubTopic from './components/SubTopic.vue'
 Vue.component("sub-topic", SubTopic)
 
 // NOTE: 定义全局变量
+// 依照环境切换Json Url的根
+if (process.env.NODE_ENV === 'production') {
+    Vue.prototype.JSON_BASE = "${base}/"
+} else {
+    Vue.prototype.JSON_BASE = "/"
+}
 // Json数据跟路径
-Vue.prototype.DATA_BASE_URL = "/data/data-view/" 
+Vue.prototype.DATA_BASE_URL = Vue.prototype.JSON_BASE + "data/data-view/"
 // 各组件数据刷新频率(毫秒)
-Vue.prototype.REFRESH_INTERVAL = 30 * 1000 
+Vue.prototype.REFRESH_INTERVAL = 30 * 1000
 
 // NOTE: 设置为开发环境或者生产环境: true开发模式; false生产模式
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+    render: h => h(App),
 }).$mount('#app')

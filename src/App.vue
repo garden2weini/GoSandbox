@@ -140,6 +140,7 @@
             updateListData();
             setInterval(updateViewData, this.REFRESH_INTERVAL);
             setInterval(updateListData, this.REFRESH_INTERVAL * 2); // 60 * 1000
+            
         }
     }
 </script>
