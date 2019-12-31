@@ -1,9 +1,11 @@
 <template>
-    <div class="m-block users text-left" style="margin-bottom: 5px;">
+    <div class="m-block users text-left">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
             <div class="col-md-6 col-lg-6 text-center" >
-                {{result.users.today}} {{result.users.rate}}%
+                {{result.users.today}}&nbsp; &nbsp;
+                <font class="text-success" v-if="result.users.rate>=0">{{result.users.rate}}%</font>
+                <font class="text-success" v-else>{{result.users.rate}}%</font>
             </div>
             <div class="col-md-6 col-lg-6 text-center" >
                 {{result.users.total}}
@@ -63,5 +65,8 @@
 <style scoped>
     div {
         font-size: 14px;
+    }
+    font.text-success {
+        font-size: 12px;
     }
 </style>

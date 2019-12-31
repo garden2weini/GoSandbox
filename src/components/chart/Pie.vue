@@ -32,7 +32,8 @@ export default {
                 container: this.ranId,
                 forceFit: true,
                 height: _offsetHeight,
-                padding: 'auto'
+                //padding: 'auto'
+                padding: [ 0, 50, 0, 0 ] // 上,右,下,左边内边距
             });
             this.chart.source(this.data);
             this.chart.legend({
@@ -77,17 +78,7 @@ export default {
     },
     mounted() { // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成，一般在该过程进行 Ajax 交互
         var self = this;
-        /*
-        this.data = [
-                {name: '海淀',value: 44.9},
-                {name: '西城',value: 19.7},
-                {name: '东城',value: 17.3},
-                {name: '崇文',value: 14.4},
-                {name: '宣武',value: 2.5},
-                {name: '顺义',value: 2.5}];
-            
-        this.colors = ["#1890ff", "#37c661", "#fbce1e", "#2b3b79", "#8a4be2", "#1dc5c5"];
-        */
+        
         // NOTE: chart label color有默认值
         let height = 250 // 获取父级高度
         this.initCharts(height);

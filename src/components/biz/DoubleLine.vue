@@ -54,7 +54,8 @@ export default {
             this.chart = new G2.Chart({
                 container: this.ranId,
                 forceFit: true,
-                height: 200
+                height: 200,
+                padding: [ 20, 20, 45, 60 ] // 上,右,下,左边内边距
             });
 
             this.chart.source(this.dataView);

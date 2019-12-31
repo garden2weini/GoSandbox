@@ -1,7 +1,7 @@
 <template>
-    <div id="app" class="container" style="margin-top: 10px;margin-left: 10px;margin-right: 20px;">
+    <div id="app" class="container" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
         <div class="row">
-            <div class="col-md-3 col-lg-3">
+            <div class="col-md-3 col-lg-3" style="padding-right: 0px;">
                 <roll-list msg="近30天TopN设备" :hasBorder="true" :data="last30DeviceList"/>
                 <roll-list msg="近30天 热销SKU" :hasBorder="true" :data="last30SkuList"/>
                 <roll-list msg="Top毛利*周转SKU" :hasBorder="true" :data="topSkuList"/>
@@ -14,7 +14,7 @@
                 <el-divider></el-divider>
                 <chart-double-line msg="活跃设备日均销售额" :hasBorder="false" :vData="dailyMeanSaleData"/>
             </div>
-            <div class="col-md-4 col-lg-4">
+            <div class="col-md-4 col-lg-4" style="padding-left: 0px;">
                 <chart-column msg="近30天 用户复购" :hasBorder="true" :vData="repeatePurchaseData"/>
                 <two-colums msg="服务用户" :hasBorder="true"/>
                 <three-colums msg="客单价" :hasBorder="true"/>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-           <div style="position: absolute; bottom: 5px;left: 50%;transform: translate(-50%, -50%);">
+           <div style="position: absolute; bottom: 5px;left: 45%;transform: translate(-50%, -50%);">
                <timer/>
            </div> 
         </div>

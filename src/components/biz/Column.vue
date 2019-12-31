@@ -37,7 +37,7 @@ export default {
                 container: this.ranId,
                 forceFit: true,
                 height: _result.height,
-                padding: [ 20, 20, 20, 38 ] // 略,略,略,左边内边距（可显示4位数字）
+                padding: [ 20, 0, 20, 80 ] // 上,右,下,左边内边距（可显示4位数字）
             });
             
             // 模拟window.resize时才会触发forceFit: true，以便自适应屏幕的宽度
@@ -52,7 +52,7 @@ export default {
             this.chart.axis('time', {
               label: {
                 textStyle: {
-                  fill: '#aaaaaa'
+                  fill: 'black' //'#aaaaaa'
                 }
               },
               tickLine: {
@@ -64,7 +64,7 @@ export default {
             this.chart.axis('value', {
               label: {
                 textStyle: {
-                  fill: '#aaaaaa'
+                  fill: 'black' // '#aaaaaa'
                 }
               }
             });
@@ -78,7 +78,7 @@ export default {
                 if (val === '30+') {
                   return 0.4;
                 }*/
-                return 1;
+                return 0.8; // 透明度
               })
               .style('time', {
                 lineWidth: val => {
@@ -86,7 +86,7 @@ export default {
                   if (val === '30+') {
                     return 1;
                   }*/
-                  return 0;
+                  return 0; // 虚线or实线
                 },
                 stroke: '#636363',
                 lineDash: [ 3, 2 ]
@@ -104,7 +104,7 @@ export default {
                   { time: '.....', value: 0 }
                 ]
             };
-            this.result.height = 120; //this.$el.offsetHeight; // 获取组件高度
+            this.result.height = 135; //this.$el.offsetHeight; // 获取组件高度
         },
     },
     created() { // 生命周期 - 创建完成（可以访问当前this实例）

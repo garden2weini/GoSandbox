@@ -4,8 +4,6 @@
             <li v-for="item in vData">
                 <p v-html="item"></p>
             </li>
-            
-            
         </ul>
         <ul v-bind:id="ranId3"></ul>
     </div>

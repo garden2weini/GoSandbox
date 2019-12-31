@@ -9,11 +9,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 text-center">
-                        <h3>¥ {{ result.total.amt }}</h3>
+                        <h3>¥{{ result.total.amt }}</h3>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 text-center">总毛利： ￥{{ result.total.grossAmt }} | {{ result.total.rate }}%</div>
+                    <div class="col-md-12 col-lg-12 text-center">
+                        总毛利： ￥{{ result.total.grossAmt }} | {{ result.total.rate }}%
+                        </div>
                 </div>
             </div>
             <div class="m-block right col-md-6 col-lg-6">
@@ -22,12 +24,21 @@
                     <div class="col-md-6 col-lg-6 text-right">{{ result.today.cnt }}笔</div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 text-center">
-                        <h3>¥ {{ result.today.amt }}</h3>
+                    <div class="col-md-12 col-lg-12 text-center" style="margin-top: 7px;margin-bottom: 7px;">
+                        <font class="amt">¥{{ result.today.amt }}&nbsp; &nbsp;</font>
+                        <font class="text-success" v-if="result.today.upRate >= 0">
+                            {{result.today.upRate}}%
+                        </font>
+                        <font class="text-danger" v-else>
+                            {{result.today.upRate}}%
+                        </font>
+                        
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 text-center">毛利： ￥{{ result.today.grossAmt }} | {{ result.today.rate }}%</div>
+                    <div class="col-md-12 col-lg-12 text-center">
+                        毛利： ￥{{ result.today.grossAmt }} | {{ result.today.rate }}%
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +54,7 @@ export default {
         return {
             result: {
                 total: { amt: 0, cnt: 0, grossAmt: 0, rate: 0 },
-                today: { amt: 0, cnt: 0, grossAmt: 0, rate: 0 }
+                today: { amt: 0, cnt: 0, grossAmt: 0, rate: 0 , upRate: 0}
             }
         };
     },
@@ -78,5 +89,9 @@ div.right {
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+}
+font.amt {
+    font-size: 18px;
+    font:bold;
 }
 </style>

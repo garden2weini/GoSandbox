@@ -1,26 +1,25 @@
 <template>
-    <div class="m-block users text-left" style="margin-bottom: 5px;">
-        
+    <div class="m-block users text-left">
         <sub-topic :msg="msg" :hasBorder="hasBorder" />
         <div class="row">
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                 ${{result.orders.today}}
             </div>
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                 ${{result.orders.last7}}
             </div>
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                 ${{result.orders.last30}}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                 今天
             </div>
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                  近7天
             </div>
-            <div class="col-md-3 col-lg-3 text-center" >
+            <div class="col-md-4 col-lg-4 text-center" >
                 近30天
             </div>
         </div>
