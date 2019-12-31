@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
     // The base URL your application bundle will be deployed.
     publicPath: process.env.NODE_ENV === 'production'
-        ? '${base}/resources/operation/'
+        ? '../resources/operation/'
         //? '/resources/operation/'
         : './',
     // 构建的输出目录
