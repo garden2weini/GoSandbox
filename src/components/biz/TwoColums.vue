@@ -5,7 +5,7 @@
             <div class="col-md-6 col-lg-6 text-center" >
                 {{result.users.today}}&nbsp; &nbsp;
                 <font class="text-success" v-if="result.users.rate>=0">{{result.users.rate}}%</font>
-                <font class="text-success" v-else>{{result.users.rate}}%</font>
+                <font class="text-danger" v-else>{{result.users.rate}}%</font>
             </div>
             <div class="col-md-6 col-lg-6 text-center" >
                 {{result.users.total}}
