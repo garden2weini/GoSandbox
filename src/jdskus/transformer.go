@@ -3,9 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"strings"
-	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -35,42 +33,40 @@ func main() {
 }
 
 func transerProduct() {
-	tmpSql := "SELECT id,skuName,jdPrice FROM JDSkus WHERE name='食品饮料' AND skuName LIKE '%矿泉水%' ORDER BY skuName"
+	jdSkuList := getJDSkuList("食品饮料", "矿泉水")
+	//var skuList []Sku
+	var productMap map[string]Product
 
-	rows, _ := db.Query(tmpSql)
-	defer rows.Close()
-	if rows == nil {
-		fmt.Println("rows is null!")
-		return
-	}
-	for rows.Next() {
-		var jdSkuId int
-		pro1 := NewProduct()
-		sku1 := NewSku()
-		sku1.createdDate = time.Now()
-
-		if err := rows.Scan(&jdSkuId, &pro1.name, &pro1.price); err != nil {
-			log.Fatal(err)
-			return
-		}
-		kv := strings.Split(pro1.name, "*")
+	for index, jdSku := range jdSkuList {
+		fmt.Printf("index slice[%d] = %s\n", index, jdSku.skuName)
+		// jdSku.skuName期望分为名称和数量+单位等两部分
+		kv := strings.Split(jdSku.skuName, "*")
 		if len(kv) != 2 {
-			fmt.Printf("Ops：" + pro1.name + "\n")
-			return
+			fmt.Printf("Ops：" + jdSku.skuName + "\n")
+			continue
 		} else {
-			pro1.name = kv[0]
-
+			var product Product
+			if v, ok := productMap[kv[0]]; ok == true {
+				// 对应Product不存在
+				product = NewProduct()
+				sku := NewSku()
+				product.id = nextTableId("Product")
+				sku.id = nextTableId("Sku")
+				product.name = kv[0]
+				sku.price = jdSku.jdPrice
+				sku.product_id = product.id
+				//skuList = append(skuList, sku)
+				productMap[product.name] = product
+				insertProduct(product)
+				insertSku(sku)
+			} else {
+				// 对应Product已经存在
+				product = v
+			}
+			jdSku.product_id = product.id
+			updateJDSku(jdSku)
 		}
-		//fmt.Printf("ID:%d, skuName:%s, jdPrice:%f\n", jdSkuId, pro1.name, pro1.price)
-		pro1.id = nextTableId("Product")
-		insertProduct(pro1)
-	}
-}
 
-// 将JDSku与Product关联
-func updateJDSku(jdSkuId int, productId int) {
-	tx, _ := db.Begin()
-	tx.Exec("Update JDSkus set product_id=? where id=?", productId, jdSkuId)
-	tx.Commit()
+	}
 
 }

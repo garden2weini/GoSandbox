@@ -5,6 +5,33 @@ import (
 	"log"
 )
 
+func getJDSkuList(skuType string, filter string) []JDSku {
+	var jdSkuSlice []JDSku
+	tmpSql := "SELECT id,skuName,jdPrice FROM JDSkus WHERE name=? AND skuName LIKE ? ORDER BY skuName"
+	//selectSql := fmt.Sprintf(tmp2, tableName)
+	rows, err := db.Query(tmpSql, skuType, "%"+filter+"%")
+	if err != nil {
+		log.Fatal(err)
+		return jdSkuSlice
+	}
+
+	defer rows.Close()
+	if rows == nil {
+		fmt.Println("rows is null!")
+		return jdSkuSlice
+	}
+	for rows.Next() {
+		jdSku := NewJDSku()
+
+		if err := rows.Scan(&jdSku.id, &jdSku.skuName, &jdSku.jdPrice); err != nil {
+			log.Fatal(err)
+			continue
+		}
+		jdSkuSlice = append(jdSkuSlice, jdSku)
+	}
+	return jdSkuSlice
+}
+
 // 插入Sku表
 func insertSku(item Sku) int64 {
 	skuParams := [...]string{"id", "createdDate", "lastModifiedDate", "version",
@@ -60,4 +87,12 @@ func insertProduct(item Product) int64 {
 	tx.Commit()
 	rowCnt, _ := result.RowsAffected()
 	return rowCnt
+}
+
+// 将JDSku与Product关联及Product数量
+func updateJDSku(jdSku JDSku) {
+	tx, _ := db.Begin()
+	tx.Exec("Update JDSkus set product_id=?, quantity=? where id=?", jdSku.product_id, jdSku.quantity, jdSku.id)
+	tx.Commit()
+
 }

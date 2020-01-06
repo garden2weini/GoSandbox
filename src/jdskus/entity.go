@@ -109,3 +109,19 @@ type Sku struct {
 	stock            int
 	product_id       int
 }
+
+func NewJDSku() JDSku {
+	return JDSku{
+		id:         0,
+		quantity:   0,
+		product_id: 0,
+	}
+}
+
+type JDSku struct {
+	id         int
+	quantity   int
+	product_id int
+	jdPrice    float32
+	skuName    string
+}
