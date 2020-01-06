@@ -120,9 +120,10 @@ func NewJDSku() JDSku {
 }
 
 type JDSku struct {
-	id         int
-	quantity   int
-	product_id int
-	jdPrice    float32
-	skuName    string
+	id                 int
+	quantity           int
+	product_id         int
+	jdPrice            float32
+	skuName            string
+	productCategory_id int
 }

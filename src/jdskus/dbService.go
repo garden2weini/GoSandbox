@@ -7,7 +7,7 @@ import (
 
 func getJDSkuList(skuType string, filter string) []JDSku {
 	var jdSkuSlice []JDSku
-	tmpSql := "SELECT id,skuName,jdPrice FROM JDSkus WHERE name=? AND skuName LIKE ? ORDER BY skuName"
+	tmpSql := "SELECT id,skuName,jdPrice,IFNULL(productCategory_id,0) productCategory_id FROM JDSkus WHERE name=? AND skuName LIKE ? ORDER BY skuName"
 	//selectSql := fmt.Sprintf(tmp2, tableName)
 	rows, err := db.Query(tmpSql, skuType, "%"+filter+"%")
 	if err != nil {
@@ -23,7 +23,7 @@ func getJDSkuList(skuType string, filter string) []JDSku {
 	for rows.Next() {
 		jdSku := NewJDSku()
 
-		if err := rows.Scan(&jdSku.id, &jdSku.skuName, &jdSku.jdPrice); err != nil {
+		if err := rows.Scan(&jdSku.id, &jdSku.skuName, &jdSku.jdPrice, &jdSku.productCategory_id); err != nil {
 			log.Fatal(err)
 			continue
 		}

@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"regexp"
+	"strconv"
 	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -39,7 +41,7 @@ func transerProduct() {
 
 	for index, jdSku := range jdSkuList {
 		fmt.Printf("index slice[%d] = %s\n", index, jdSku.skuName)
-		// jdSku.skuName期望分为名称和数量+单位等两部分
+		// jdSku.skuName期望分为名称和数量+单位等两部分（如：大傻子矿泉水300ml*24瓶）
 		kv := strings.Split(jdSku.skuName, "*")
 		if len(kv) != 2 {
 			fmt.Printf("Ops：" + jdSku.skuName + "\n")
@@ -50,11 +52,17 @@ func transerProduct() {
 				// 对应Product不存在
 				product = NewProduct()
 				sku := NewSku()
+				jdSku.quantity = parseQuantity(kv[1])
 				product.id = nextTableId("Product")
-				sku.id = nextTableId("Sku")
 				product.name = kv[0]
+				product.price = jdSku.jdPrice / float32(jdSku.quantity)
+				sku.id = nextTableId("Sku")
 				sku.price = jdSku.jdPrice
 				sku.product_id = product.id
+				fmt.Printf("jdSku.productCategory_id：%d\n", jdSku.productCategory_id)
+				if jdSku.productCategory_id != 0 {
+					product.productCategory_id = jdSku.productCategory_id
+				}
 				productMap[product.name] = product
 				insertProduct(product)
 				insertSku(sku)
@@ -68,4 +76,21 @@ func transerProduct() {
 
 	}
 
+}
+
+func parseQuantity(rawStr string) int {
+	quantity := 1
+	pattern := "^[1-9]\\d*$" //反斜杠要转义
+	for i := 1; i < 10; i++ {
+		subStr := rawStr[0:i]
+		result, _ := regexp.MatchString(pattern, subStr)
+		//fmt.Println(result)
+		if !result {
+			break
+		} else {
+			//fmt.Println(subStr)
+			quantity, _ = strconv.Atoi(subStr)
+		}
+	}
+	return quantity
 }
