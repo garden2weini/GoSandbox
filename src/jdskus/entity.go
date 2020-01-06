@@ -75,6 +75,7 @@ type Product struct {
 }
 
 func NewSku() Sku {
+	uid := uuid.Must(uuid.NewV4())
 	return Sku{
 		id:               0,
 		createdDate:      time.Now(),
@@ -87,7 +88,7 @@ func NewSku() Sku {
 		maxCommission:    1.0,
 		price:            0,
 		rewardPoint:      0,
-		sn:               "99999999",
+		sn:               uid.String(),
 		stock:            0,
 		product_id:       0,
 	}

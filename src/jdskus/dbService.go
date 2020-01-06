@@ -68,7 +68,7 @@ func insertProduct(item Product) int64 {
 	sql := "INSERT INTO Product(%s) values(%s)"
 
 	sql = buildSqlByColumns(productParams[:], sql)
-	fmt.Println(sql)
+	//fmt.Println(sql)
 
 	//Begin函数内部会去获取连接
 	tx, _ := db.Begin()
@@ -92,7 +92,10 @@ func insertProduct(item Product) int64 {
 // 将JDSku与Product关联及Product数量
 func updateJDSku(jdSku JDSku) {
 	tx, _ := db.Begin()
-	tx.Exec("Update JDSkus set product_id=?, quantity=? where id=?", jdSku.product_id, jdSku.quantity, jdSku.id)
+	_, err := tx.Exec("Update JDSkus set product_id=?, quantity=? where id=?", jdSku.product_id, jdSku.quantity, jdSku.id)
+	if err != nil {
+		log.Fatal(err)
+	}
 	tx.Commit()
 
 }

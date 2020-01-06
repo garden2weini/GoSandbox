@@ -50,16 +50,21 @@ go get -u github.com/satori/go.uuid
 
 ### 坑1
 1.生成证书的时候，要指定ip
+```
 keytool -genkey -v -alias client -keyalg RSA -storetype PKCS12 -keystore client.p12 -validity 36500
 注意：first last name需要指定如下
     -ext SAN=ip:xxx.xxx.xxx.xxx
+```
 2.P12 BKS 转换的时候密码过长，报错
+```
     java.security.KeyStoreException: java.io.IOException: Error initialising store of key store: java.security.InvalidKeyException: Illegal key size
-    是国外对技术出口的限制，限定了密钥的长度，需要替换jdk里面的两个文件（jre\lib\security）：local_policy.jar，US_export_policy.jar，要下载jdk版本对应的，不然会出错！
-JDK6的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html 
-JDK7的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html 
-JDK8的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html 
-下载后解压，可以看到local_policy.jar和US_export_policy.jar以及readme.txt。 
-如果安装了JRE，将两个jar文件放到%JRE_HOME%\lib\security下覆盖原来文件，记得先备份。 
-如果安装了JDK，将两个jar文件也放到%JDK_HOME%\jre\lib\security下。 
+```
+此问题是国外对技术出口的限制，限定了密钥的长度，需要替换jdk里面的两个文件（jre\lib\security）：local_policy.jar，US_export_policy.jar，要下载jdk版本对应的，不然会出错！
+
+- JDK6的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html 
+- JDK7的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html 
+- JDK8的下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html 
+- 下载后解压，可以看到local_policy.jar和US_export_policy.jar以及readme.txt。 
+- 如果安装了JRE，将两个jar文件放到%JRE_HOME%\lib\security下覆盖原来文件，记得先备份。 
+- 如果安装了JDK，将两个jar文件也放到%JDK_HOME%\jre\lib\security下。 
 原文链接：https://blog.csdn.net/itheimach/article/details/70188646

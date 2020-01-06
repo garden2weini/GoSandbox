@@ -34,8 +34,8 @@ func main() {
 
 func transerProduct() {
 	jdSkuList := getJDSkuList("食品饮料", "矿泉水")
-	//var skuList []Sku
-	var productMap map[string]Product
+	// 声明并初始化map
+	productMap := map[string]Product{}
 
 	for index, jdSku := range jdSkuList {
 		fmt.Printf("index slice[%d] = %s\n", index, jdSku.skuName)
@@ -46,7 +46,7 @@ func transerProduct() {
 			continue
 		} else {
 			var product Product
-			if v, ok := productMap[kv[0]]; ok == true {
+			if v, ok := productMap[kv[0]]; ok == false {
 				// 对应Product不存在
 				product = NewProduct()
 				sku := NewSku()
@@ -55,7 +55,6 @@ func transerProduct() {
 				product.name = kv[0]
 				sku.price = jdSku.jdPrice
 				sku.product_id = product.id
-				//skuList = append(skuList, sku)
 				productMap[product.name] = product
 				insertProduct(product)
 				insertSku(sku)
