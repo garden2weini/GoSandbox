@@ -4,29 +4,39 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"strconv"
+	"strings"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
+const (
+	USER_NAME = "merlin"
+	PASS_WORD = "helloworld"
+	HOST      = "localhost"
+	PORT      = "3306"
+	DATABASE  = "superetail"
+	CHARSET   = "utf8"
+	//PARAMS    = "useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT"
+)
+
 var db = &sql.DB{}
 
 func init() {
+	// parseTime=true 可以解析dateTime
+	dbDSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=true", USER_NAME, PASS_WORD, HOST, PORT, DATABASE, CHARSET)
+	fmt.Println(dbDSN)
 	db, _ = sql.Open("mysql", "merlin:helloworld@tcp(localhost:3306)/superetail?charset=utf8")
+	//db, _ = sql.Open("mysql", dbDSN)
 }
 
 func main() {
-	//insert()
-	query()
-	//update()
-	//query()
-	//delete()
+	transerProduct()
 }
 
-func query() {
-	tmpSql := "SELECT id,skuName,jdPrice FROM JDSkus WHERE name='食品饮料' AND skuName LIKE '%矿泉水%'"
-	//方式1 query
+func transerProduct() {
+	tmpSql := "SELECT id,skuName,jdPrice FROM JDSkus WHERE name='食品饮料' AND skuName LIKE '%矿泉水%' ORDER BY skuName"
+
 	rows, _ := db.Query(tmpSql)
 	defer rows.Close()
 	if rows == nil {
@@ -34,40 +44,33 @@ func query() {
 		return
 	}
 	for rows.Next() {
-		var id string
-		var jdPrice float32
-		var skuName string
-		if err := rows.Scan(&id, &skuName, &jdPrice); err != nil {
+		var jdSkuId int
+		pro1 := NewProduct()
+		sku1 := NewSku()
+		sku1.createdDate = time.Now()
+
+		if err := rows.Scan(&jdSkuId, &pro1.name, &pro1.price); err != nil {
 			log.Fatal(err)
+			return
 		}
-		fmt.Printf("ID: %s, skuName:%s ,jdPrice: %f\n", id, skuName, jdPrice)
+		kv := strings.Split(pro1.name, "*")
+		if len(kv) != 2 {
+			fmt.Printf("Ops：" + pro1.name + "\n")
+			return
+		} else {
+			pro1.name = kv[0]
+
+		}
+		//fmt.Printf("ID:%d, skuName:%s, jdPrice:%f\n", jdSkuId, pro1.name, pro1.price)
+		pro1.id = nextTableId("Product")
+		insertProduct(pro1)
 	}
 }
 
-func update() {
-	start := time.Now()
+// 将JDSku与Product关联
+func updateJDSku(jdSkuId int, productId int) {
 	tx, _ := db.Begin()
-	for i := 1301; i <= 1400; i++ {
-		tx.Exec("UPdate user set age=? where uid=?", i, i)
-	}
+	tx.Exec("Update JDSkus set product_id=? where id=?", productId, jdSkuId)
 	tx.Commit()
-
-	end := time.Now()
-	fmt.Println("方式4 update total time:", end.Sub(start).Seconds())
-}
-
-func insert() {
-	start := time.Now()
-	//Begin函数内部会去获取连接
-	tx, _ := db.Begin()
-	for i := 1301; i <= 1400; i++ {
-		//每次循环用的都是tx内部的连接，没有新建连接，效率高
-		tx.Exec("INSERT INTO user(uid,username,age) values(?,?,?)", i, "user"+strconv.Itoa(i), i-1000)
-	}
-	//最后释放tx内部的连接
-	tx.Commit()
-
-	end := time.Now()
-	fmt.Println("方式4 insert total time:", end.Sub(start).Seconds())
 
 }

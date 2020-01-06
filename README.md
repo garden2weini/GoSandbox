@@ -3,7 +3,7 @@
 ## RUN JD VOP Sandbox
 ```
 go run sandbox.go
-curl -l http://localhost:9008/jd/product_pool_no?id=maliang
+curl -l http://localhost:9008/jd/product_pool_no?id=merlin
 ```
 
 ## Demo
@@ -18,6 +18,7 @@ curl -l http://localhost:4200/api/tuts/1
 ```
 # HTTP request multiplexer
 go get -u github.com/gorilla/mux
+go get -u github.com/satori/go.uuid
 ```
 
 ## Try it
