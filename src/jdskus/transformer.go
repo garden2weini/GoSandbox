@@ -59,7 +59,7 @@ func transerProduct() {
 				sku.id = nextTableId("Sku")
 				sku.price = jdSku.jdPrice
 				sku.product_id = product.id
-				fmt.Printf("jdSku.productCategory_id：%d\n", jdSku.productCategory_id)
+				//fmt.Printf("jdSku.productCategory_id：%d\n", jdSku.productCategory_id)
 				if jdSku.productCategory_id != 0 {
 					product.productCategory_id = jdSku.productCategory_id
 				}

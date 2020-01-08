@@ -126,4 +126,5 @@ type JDSku struct {
 	jdPrice            float32
 	skuName            string
 	productCategory_id int
+	imagePath          string
 }

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Insert SQL构造器
 func buildSqlByColumns(params []string, sqlTemplate string) string {
 	var p1 strings.Builder
 	var p2 strings.Builder
